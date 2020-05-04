@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	namespace: 当前mapper的唯一标识 
+			   mapper与接口包路径一致  -->
+<mapper namespace="com.jt.mapper.UserMapper">
+	
+	<!--编辑sql语法 sql标签的Id名称 应该和接口方法名称一致 
+		resultType="包名.类名" 
+		通过别名包动态实现了路径的映射
+	 -->
+	<select id="findAll" resultType="User">
+		select * from user
+	</select>
+	
+	<!--开启驼峰规则映射
+		User			user表
+		userId	        user_id 
+		userAge			user_age 
+		userSex			user_sex 
+		要求:字段名称和属性名称必然一致!!!!
+		
+		解决方法: 开启驼峰规则映射
+		实现思路:
+			1.程序执行sql语句.
+			2.将结果集映射到对象中
+			  字段user_id~~~~去除"_"线~~~~~之后首字母大写userId
+			3.将转化后的数据映射给user的属性.
+		
+		注意事项:
+			1.一旦开启了驼峰规则映射,则必然按照要求执行
+			例子:
+				对象				字段
+				user_id			user_id   不能映射
+				字段~~~user_id~~~~userid~~~userId =!user_id
+	  -->
+	
+<!-- 	<insert id="insert">
+		insert into user(id,name,age,sex) values (#{id},#{name},#{age},#{sex})
+	</insert> -->
+	
+	
+	
+	
+</mapper>
